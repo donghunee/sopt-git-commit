@@ -1,0 +1,21 @@
+.img-responsive {
+    border-radius: 50%;
+}
+
+
+.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.item {
+    color:white;
+    padding: 20px;
+}
+
+.button {
+    padding:5px;
+    border-radius: 3px;
+}
