@@ -15,32 +15,32 @@ class App extends Component {
         verify : true
     }
 
-    fet = () => {
+    // fet = () => {
 
-        let userID = "donghunee"
+    //     let userID = "donghunee"
 
-        fetch(`https://api.github.com/users/${userID}/events`)
-          .then(response => response.json())
-          .then(json => {
-              let co = 0
-            for(var i in json) {
-                var today = new Date()
-                let date = new Date(json[i].created_at)
-                if (date.getMonth()+1 === today.getMonth()+1 && date.getDate() === today.getDate()){
-                    if (json[i].type === "PushEvent" || json[i].type =="PullRequestEvent" ) {
-                        ipcRenderer.send('async-commit', 'sync ping');
-                        co += 1
-                        break
-                    }
-                }
-            }
-            if (co === 0) {
-              ipcRenderer.send('async-uncommit', 'sync ping');
-            }
-          })
-          .catch(err => console.log(err))
+    //     fetch(`https://api.github.com/users/${userID}/events`)
+    //       .then(response => response.json())
+    //       .then(json => {
+    //           let co = 0
+    //         for(var i in json) {
+    //             var today = new Date()
+    //             let date = new Date(json[i].created_at)
+    //             if (date.getMonth()+1 === today.getMonth()+1 && date.getDate() === today.getDate()){
+    //                 if (json[i].type === "PushEvent" || json[i].type =="PullRequestEvent" ) {
+    //                     ipcRenderer.send('async-commit', 'sync ping');
+    //                     co += 1
+    //                     break
+    //                 }
+    //             }
+    //         }
+    //         if (co === 0) {
+    //           ipcRenderer.send('async-uncommit', 'sync ping');
+    //         }
+    //       })
+    //       .catch(err => console.log(err))
 
-    }
+    // }
 
     handleSubmit = (event) => {
         try {
@@ -69,10 +69,10 @@ class App extends Component {
         event.preventDefault();
     }
 
-    StartClock() {    
-        this.fet()
-        let timerId = setInterval(this.fet, 100000);
-    }
+    // StartClock() {    
+    //     this.fet()
+    //     let timerId = setInterval(this.fet, 100000);
+    // }
     
     handleChange = (event) => {
         console.log(event.target)
@@ -81,10 +81,10 @@ class App extends Component {
     }
 
     componentDidMount() {
-        ipcRenderer.on('async-reply', (event, arg) => {
-            console.log(arg);  // async pong
-        });
-        this.StartClock()
+        // ipcRenderer.on('async-reply', (event, arg) => {
+        //     console.log(arg);  // async pong
+        // });
+        // this.StartClock()
     }
 
   render() {
