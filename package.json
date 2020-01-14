@@ -14,7 +14,8 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.1.2",
     "react-time-picker": "^3.9.0",
-    "update-electron-app": "^1.2.0"
+    "update-electron-app": "^1.2.0",
+    "use-countdown-timer": "^1.1.2"
   },
   "devDependencies": {
     "concurrently": "4.1.2",
