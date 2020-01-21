@@ -33,7 +33,7 @@ function createWindow() {
   ipcMain.on('async-commit', (event, arg) => {
     var notification = new Notification({
         title:"sopt-C",
-        body: "1월 8일자 커밋 완료",
+        body: "커밋 완료",
         closeButtonText:"qwewq"
     });
     notification.show()

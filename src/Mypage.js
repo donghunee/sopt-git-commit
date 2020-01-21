@@ -5,6 +5,7 @@ import './Mypage.css';
 import { useCountdownTimer } from 'use-countdown-timer';
 const { ipcRenderer } = window.require('electron'); // type에러 잡기
 
+const ONE_DAY = 3600000
 
 const fet = () => {
     fetch(`https://api.github.com/users/${localStorage.userID}/events`)
@@ -31,7 +32,7 @@ const fet = () => {
 
 const StartClock = () => {    
     fet()
-    let timerId = setInterval(fet, 100000);
+    let timerId = setInterval(fet, ONE_DAY);
 }
 
 const logout = () => {
