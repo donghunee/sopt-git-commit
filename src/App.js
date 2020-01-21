@@ -15,33 +15,6 @@ class App extends Component {
         verify : true
     }
 
-    // fet = () => {
-
-    //     let userID = "donghunee"
-
-    //     fetch(`https://api.github.com/users/${userID}/events`)
-    //       .then(response => response.json())
-    //       .then(json => {
-    //           let co = 0
-    //         for(var i in json) {
-    //             var today = new Date()
-    //             let date = new Date(json[i].created_at)
-    //             if (date.getMonth()+1 === today.getMonth()+1 && date.getDate() === today.getDate()){
-    //                 if (json[i].type === "PushEvent" || json[i].type =="PullRequestEvent" ) {
-    //                     ipcRenderer.send('async-commit', 'sync ping');
-    //                     co += 1
-    //                     break
-    //                 }
-    //             }
-    //         }
-    //         if (co === 0) {
-    //           ipcRenderer.send('async-uncommit', 'sync ping');
-    //         }
-    //       })
-    //       .catch(err => console.log(err))
-
-    // }
-
     handleSubmit = (event) => {
         try {
             fetch(`https://api.github.com/users/${this.state.userID}`)
@@ -51,17 +24,18 @@ class App extends Component {
                         this.setState({
                             verify:false
                         })
-                        
                     }else {
                         this.setState({
                             verify:true,
                             userImage : json.avatar_url,
                             userName : json.name
                         })
-                        console.log(this.state)
+                        localStorage.setItem('userID',this.state.userID)
+                        localStorage.setItem('userImage',this.state.userImage)
+                        localStorage.setItem('userName',this.state.userName)
                         window.location.hash = `/mypage?image=${this.state.userImage}&name=${this.state.userName}`;
                     }
-                })
+                  })
                 .catch(err => console.log("e"))         
         } catch (error) {   
             
@@ -81,10 +55,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // ipcRenderer.on('async-reply', (event, arg) => {
-        //     console.log(arg);  // async pong
-        // });
-        // this.StartClock()
+        if (localStorage.userID !== undefined) {
+          window.location.hash = `/mypage?image=${localStorage.userImage}&name=${localStorage.userName}`;
+        }
     }
 
   render() {

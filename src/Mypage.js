@@ -1,16 +1,13 @@
 import React,{ useState }  from 'react';
 import queryString from 'query-string';
-import TimePicker from 'react-time-picker';
+// import TimePicker from 'react-time-picker';
 import './Mypage.css';
 import { useCountdownTimer } from 'use-countdown-timer';
 const { ipcRenderer } = window.require('electron'); // type에러 잡기
 
 
 const fet = () => {
-
-    let userID = "donghunee"
-
-    fetch(`https://api.github.com/users/${userID}/events`)
+    fetch(`https://api.github.com/users/${localStorage.userID}/events`)
       .then(response => response.json())
       .then(json => {
           let co = 0
@@ -30,7 +27,6 @@ const fet = () => {
         }
       })
       .catch(err => console.log(err))
-
 }
 
 const StartClock = () => {    
@@ -38,12 +34,16 @@ const StartClock = () => {
     let timerId = setInterval(fet, 100000);
 }
 
+const logout = () => {
+  localStorage.clear()
+  window.history.back()
+}
 
 const Mypage = ({location, match}) => {
     const { countdown, start, reset } = useCountdownTimer({ timer: 5 });
     const [value, setValue] = useState(true);
 
-
+    
     const query = queryString.parse(location.search);
 
     return (
@@ -52,9 +52,10 @@ const Mypage = ({location, match}) => {
                 <img src={query.image} className="img-responsive animated fadeIn slow" style={{width:100}} />
                 <p className="animated fadeIn slow delay-1s">{query.name}님 안녕하세요</p>
                 <button onClick={StartClock} className="button animated fadeIn slow delay-2s">알림 시작</button>
-                <div>{countdown}</div>
-                <button onClick={reset}>Reset</button>
-                <button onClick={start}>Start</button>
+                <button onClick={logout} className="button logout animated fadeIn slow delay-2s">로그아웃</button>
+                {/* <div>{countdown}</div>
+                <button onClick={reset}>reset</button>
+                <button onClick={start}>Start</button> */}
             </div>
         </div>
     );

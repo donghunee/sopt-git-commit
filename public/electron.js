@@ -7,16 +7,11 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require("path");
 const isDev = require("electron-is-dev");
 
-if (isDev) {
-    require('electron-debug')();
-}
+// if (isDev) {
+//     require('electron-debug')();
+// }
 
 let mainWindow;
-
-require("update-electron-app")({
-  repo: "kitze/react-electron-example",
-  updateInterval: "1 hour"
-});
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 400, height: 400, webPreferences: { nodeIntegration: true }});
@@ -25,8 +20,6 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
-
-
   ipcMain.on('async-uncommit', (event, arg) => {
     var notification = new Notification({
         title:"sopt-C",
