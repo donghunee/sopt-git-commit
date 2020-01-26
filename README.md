@@ -18,8 +18,6 @@
 
 다음과 같이요~
 
-![](./public/image/alarm2.png)
-
 커밋하면 다음과 같은 알람으로 바뀌게됩니다.
 
 ![](./public/image/success.png)
